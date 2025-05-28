@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5600/api/v1'; // Update this to match your backend port
+const API_URL = 'https://smart-price.onrender.com/api/v1'; // Update this to match your backend port
 
 // Create an axios instance with default config
 const api = axios.create({

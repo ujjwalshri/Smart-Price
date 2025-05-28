@@ -208,6 +208,9 @@ const prepareTopRatedCards = (processedCards) => {
 
 // Main scrape controller function
 const scrape = asyncHandler(async (req, res) => {
+  
+
+
   const { lat = "28.65420", long = "77.23730", item = "Biryani" } = req.query;
 
   const v3ApiRequest = await captureSwiggyApiRequest(item);
