@@ -16,7 +16,7 @@ const app = express();
 //middlewares
 app.use(morgan("dev"));
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://localhost:5173'],
+  origin: ['http://localhost:5173', 'https://localhost:5173','https://subtle-narwhal-5bf268.netlify.app'],
   credentials: true
 }));
 app.use(express.json({ limit: "16kb" }));
