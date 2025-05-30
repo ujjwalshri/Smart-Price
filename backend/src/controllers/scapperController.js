@@ -12,6 +12,13 @@ const captureSwiggyApiRequest = async (item) => {
   });
 
   const page = await browser.newPage();
+
+
+  // Log browser console errors
+  page.on('console', msg => console.log('[PUPPETEER]', msg.text()));
+  page.on('error', error => console.error('[PAGE ERROR]', error));
+  page.on('pageerror', error => console.error('[PAGE JS ERROR]', error));
+
   let v3ApiRequest = null;
 
   await page.setRequestInterception(true);
@@ -208,8 +215,6 @@ const prepareTopRatedCards = (processedCards) => {
 
 // Main scrape controller function
 const scrape = asyncHandler(async (req, res) => {
-  
-
 
   const { lat = "28.65420", long = "77.23730", item = "Biryani" } = req.query;
 
