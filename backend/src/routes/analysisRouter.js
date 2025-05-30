@@ -6,4 +6,4 @@ const router = express.Router();
 // Route to trigger analysis for a specific menu
 router.route("/menu/:menuId").post(protect, analysisController.analyzeMenu);
 
-export default router;
+export default router;      
