@@ -1,6 +1,7 @@
-FROM node:18-slim
+# Use a slim Node base image
+FROM node:20-slim
 
-# Install Chromium dependencies for Puppeteer
+# Install Chromium dependencies
 RUN apt-get update && apt-get install -y \
     wget \
     ca-certificates \
@@ -10,26 +11,33 @@ RUN apt-get update && apt-get install -y \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
     libcups2 \
+    libdbus-1-3 \
+    libgdk-pixbuf2.0-0 \
+    libnspr4 \
     libnss3 \
     libx11-xcb1 \
     libxcomposite1 \
     libxdamage1 \
     libxrandr2 \
     xdg-utils \
+    libgbm1 \
+    libxshmfence1 \
+    libglu1-mesa \
     --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Create app directory
 WORKDIR /app
 
-# Copy files
-COPY . .
-
-# Install dependencies
+# Copy dependencies and install
+COPY package*.json ./
 RUN npm install
 
-# Expose the port your app runs on (e.g., 3000)
-EXPOSE 3000
+# Copy the rest of your code
+COPY . .
 
-# Start the server
-CMD ["npm", "start"]
+# Expose your app port
+EXPOSE 10000
+
+# Start the app
+CMD ["node", "src/index.js"]
